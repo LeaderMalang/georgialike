@@ -6,6 +6,10 @@
         <li class=" nav-item"><a href="{{ route('admin.tours') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tours</span></a>
         </li>
 
+
+        <li class=" nav-item"><a href="{{ route('admin.tours.category') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tour Category</span></a>
+        </li>
+
     </ul>
   </div>
 </div>
