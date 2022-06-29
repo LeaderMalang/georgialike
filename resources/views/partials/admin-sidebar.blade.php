@@ -15,6 +15,10 @@
         <li class=" nav-item"><a href="{{ route('admin.tours.day') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tour Day</span></a>
         </li>
 
+        <li class=" nav-item"><a href="{{ route('admin.hotel.category') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Hotel Category</span></a>
+        </li>
+        {{-- <li class=" nav-item"><a href="{{ route('admin.hotel') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tour Day</span></a>
+        </li> --}}
     </ul>
   </div>
 </div>
