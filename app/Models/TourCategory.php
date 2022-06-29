@@ -9,4 +9,7 @@ class TourCategory extends Model
 {
     use HasFactory;
     protected $fillable = ['days','nights','people'];
+    public function tour(){
+        return $this->belongsTo(Tour::class);
+    }
 }

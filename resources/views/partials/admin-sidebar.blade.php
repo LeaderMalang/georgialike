@@ -9,6 +9,11 @@
 
         <li class=" nav-item"><a href="{{ route('admin.tours.category') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tour Category</span></a>
         </li>
+        <li class=" nav-item"><a href="{{ route('admin.tours.detail') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tour Detail</span></a>
+        </li>
+
+        <li class=" nav-item"><a href="{{ route('admin.tours.day') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tour Day</span></a>
+        </li>
 
     </ul>
   </div>

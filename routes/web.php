@@ -5,6 +5,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TourCategoryController;
+use App\Http\Controllers\TourDayController;
+use App\Http\Controllers\TourDetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,10 @@ Route::get('admin/tour/category', [TourCategoryController::class, 'index'])->nam
 Route::post('admin/tour/category/store', [TourCategoryController::class, 'store'])->name('admin.tours.category.store')->middleware('is_admin');
 Route::get('admin/tour/category/destroy/{id}', [TourCategoryController::class, 'destroy'])->name('admin.tours.category.destroy')->middleware('is_admin');
 
+Route::get('admin/tour/detail', [TourDetailController::class, 'index'])->name('admin.tours.detail')->middleware('is_admin');
+Route::post('admin/tour/detail/store', [TourDetailController::class, 'store'])->name('admin.tours.detail.store')->middleware('is_admin');
+Route::get('admin/tour/detail/destroy/{id}', [TourDetailController::class, 'destroy'])->name('admin.tours.detail.destroy')->middleware('is_admin');
+
+
+Route::get('admin/tour/day', [TourDayController::class, 'index'])->name('admin.tours.day')->middleware('is_admin');
+Route::post('admin/tour/day/store', [TourDayController::class, 'store'])->name('admin.tours.day.store')->middleware('is_admin');
