@@ -95,7 +95,7 @@
                       <tr>
                         <th>Name</th>
                         <th>description</th>
-                        <th>image</th>
+                        {{-- <th>image</th> --}}
                         <th>Ations</th>
                       </tr>
                     </thead>
@@ -106,7 +106,7 @@
                       <tr>
                         <td>{{$category->name}}</td>
                         <td class="success">{{$category->description}}</td>
-                        <td>{{asset($category->image)}}</td>
+                        {{-- <td>{{asset($category->image)}}</td> --}}
                         {{-- <td>{{$category->people}}</td> --}}
                         <td>
                           <a

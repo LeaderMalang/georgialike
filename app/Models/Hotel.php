@@ -13,6 +13,6 @@ class Hotel extends Model
 
 
     public function category(){
-        return $this->hasOne(Hotal_Category::class);
+        return $this->hasOne(Hotal_Category::class,'id','hotal_category_id');
     }
 }

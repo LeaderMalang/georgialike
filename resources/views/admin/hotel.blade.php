@@ -11,7 +11,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">ADD NEW TOUR</h4>
+                    <h4 class="card-title">ADD NEW Hotel</h4>
                     <a class="heading-elements-toggle"><i class="la la-ellipsis-h font-medium-3"></i></a>
                     <div class="heading-elements">
                       <ul class="list-inline mb-0">
@@ -24,7 +24,7 @@
                   </div>
                   <div class="card-content collapse show">
                     <div class="card-body">
-                      <form action="{{route('admin.tours.detail.store')}}" enctype="multipart/form-data" class="steps-validation wizard-notification" method="POST">
+                      <form action="{{route('admin.hotel.store')}}" enctype="multipart/form-data" class="steps-validation wizard-notification" method="POST">
                         <!-- Step 1 -->
                         <h6 class="danger">
                             @if($errors->any())
@@ -36,19 +36,19 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="firstName3">
-                                    Title :
+                                    name :
                                   <span class="danger">*</span>
                                 </label>
-                                <input type="text" class="form-control required" id="title" name="title">
+                                <input type="text" class="form-control required" id="name" name="name">
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="lastName3">
-                                    Charges :
+                                    description :
                                   <span class="danger">*</span>
                                 </label>
-                                <input type="float" class="form-control required" id="charges" name="charges">
+                                <input type="float" class="form-control required" id="description" name="description">
                               </div>
                             </div>
                           </div>
@@ -60,10 +60,10 @@
                                   <span class="danger">*</span>
                                 </label>
                                 {{-- <input type="number" class="form-control required" id="emailAddress5" name="category_id"> --}}
-                                <select class="form-control required" name="category_id">
+                                <select class="form-control required" name="hotal_category_id">
                                     <option>Select Category</option>
                                     @foreach ($categories as $category)
-                                    <option value="{{$category->id}} ">{{$category->days}}  --{{$category->nights}} --{{$category->people}}  </option>
+                                    <option value="{{$category->id}} ">{{$category->name}}  </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -74,10 +74,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="emailAddress5">
-                                        image :
+                                        images :
                                       <span class="danger">*</span>
                                     </label>
-                                    <input type="file" class="form-control required" id="emailAddress5" name="image">
+                                    <input type="file" class="form-control required" id="emailAddress5" name="images[]" multiple>
                                   </div>
                             </div>
 
@@ -98,7 +98,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">ALL TOURS</h4>
+                <h4 class="card-title">ALL Hotels</h4>
                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                   <td>
@@ -111,9 +111,9 @@
                   <table class="table table-de mb-0">
                     <thead>
                       <tr>
-                        <th>Title</th>
-                        <th>Charges</th>
-                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Images</th>
                         <th>Category</th>
                         <th>Ations</th>
                       </tr>
@@ -122,17 +122,24 @@
                         @php
                             $url=url();
                         @endphp
-                        @foreach ($tours as $tour )
+                        @foreach ($hotels as $hotel )
 
 
                       <tr>
-                        <td>{{$tour->title}}</td>
-                        <td class="success">{{$tour->charges}}</td>
-                        <td><img scr="{{asset($tour->image)}}" height="100" width="100"/></td>
-                        <td>{{$tour->category_id}}</td>
+                        <td>{{$hotel->name}}</td>
+                        <td class="success">{{$hotel->description}}</td>
+                        <td>
+                            @php
+                                $images=explode(',',$hotel->images)
+                            @endphp
+                            @foreach ($images as $image )
+                            <img scr="{{asset($image)}}" height="100" width="100"/>
+                            @endforeach
+
+                        <td>{{$hotel->category->name}}</td>
                         <td>
                           <a
-                          href="{{route('admin.tours.detail.destroy',$category->id)}}"
+                          href="{{route('admin.hotel.destroy',$hotel->id)}}"
                           class="btn btn-sm round btn-outline-danger" > Delete</a>
                         </td>
                       </tr>
