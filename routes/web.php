@@ -56,3 +56,6 @@ Route::get('admin/hotel/category/destroy/{id}', [HotelCategoryController::class,
 Route::get('admin/hotel', [HotelController::class, 'index'])->name('admin.hotel')->middleware('is_admin');
 Route::post('admin/hotel/store', [HotelController::class, 'store'])->name('admin.hotel.store')->middleware('is_admin');
 Route::get('admin/hotel/destroy/{id}', [HotelController::class, 'destroy'])->name('admin.hotel.destroy')->middleware('is_admin');
+
+
+
