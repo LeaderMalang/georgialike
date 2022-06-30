@@ -127,7 +127,7 @@
                         <td>{{$tour_day->day_no}}</td>
                         <td class="success">{{$tour_day->description}}</td>
                         <td><img scr="{{asset($tour_day->image)}}" height="100" width="100"/></td>
-                        <td>{{$tour_day->tour_id}}</td>
+                        <td>{{$tour_day->tour->title}}</td>
                         <td>
                           <a
                           href="{{route('admin.tours.detail.destroy',$tour_day->id)}}"

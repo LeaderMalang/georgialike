@@ -129,7 +129,7 @@
                         <td>{{$tour->title}}</td>
                         <td class="success">{{$tour->charges}}</td>
                         <td><img scr="{{asset($tour->image)}}" height="100" width="100"/></td>
-                        <td>{{$tour->category_id}}</td>
+                        <td>{{$tour->category->days}}--{{$tour->category->nights}}--{{$tour->category->people}}</td>
                         <td>
                           <a
                           href="{{route('admin.tours.detail.destroy',$category->id)}}"

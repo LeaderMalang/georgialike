@@ -13,9 +13,9 @@ class Tour extends Model
 
 
     public function category(){
-        return $this->hasOne(TourCategory::class);
+        return $this->hasOne(TourCategory::class,'id','category_id');
     }
     public function tour_day(){
-        return $this->belongsTo(TourDay::class);
+        return $this->belongsTo(TourDay::class,'tour_id','id');
     }
 }
