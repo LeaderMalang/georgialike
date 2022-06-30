@@ -9,7 +9,7 @@ class Hotal_Category extends Model
 {
     use HasFactory;
     protected $table = "hotal_category";
-    protected $fillable = ['name','description','images'];
+    protected $fillable = ['name','description'];
 
 
     public function hotel(){

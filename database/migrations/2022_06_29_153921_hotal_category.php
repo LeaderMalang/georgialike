@@ -17,7 +17,7 @@ class HotalCategory extends Migration
             $table->increments('id')->comment('Increments');
             $table->string('name')->nullable()->comment('name');
             $table->longText('description')->nullable()->comment('Day Descp');
-            $table->string('image')->comment('Day Image');
+           
             $table->timestamps();
         });
     }

@@ -52,7 +52,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row">
+                          {{-- <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="emailAddress5">
@@ -63,7 +63,7 @@
                               </div>
                             </div>
 
-                          </div>
+                          </div> --}}
 
                         </fieldset>
                        <button type="submit" class="btn btn-sm round btn-success btn-glow">Save</button>
