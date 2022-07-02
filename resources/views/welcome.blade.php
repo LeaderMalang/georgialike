@@ -174,7 +174,7 @@
                             <p class="card-text">{{$tour->category->days}} Days / {{$tour->category->nights}} Nights Tour</p>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <span class="btn btn-primary">${{$tour->charges}}</span>
-                                <a href="{{ route('checkout') }}" target="_blank"><button type="button"
+                                <a href="{{ route('checkout',$tour->id) }}" target="_blank"><button type="button"
                                         class="btn btn-blue-grey">Book Now <i class="ft-pocket mt-1"></i></button></a>
                             </div>
                         </div>

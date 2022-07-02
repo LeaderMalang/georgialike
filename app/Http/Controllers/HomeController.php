@@ -73,9 +73,11 @@ class HomeController extends Controller
         return view('about-us');
     }
 
-    public function checkout()
+    public function checkout($tourid)
     {
-        return view('checkout');
+        $tour=Tour::with(['category','tour_day'])->where('id',$tourid)->get();
+        $hotel_categories=Hotal_Category::all();
+        return view('checkout',compact('tour','hotel_categories'));
     }
 
     public function contact()

@@ -26,7 +26,7 @@ use App\Http\Controllers\HotelController;
 Route::group([], function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about-us',[HomeController::class, 'aboutUs'])->name('about');
-    Route::get('/checkout',[HomeController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout/{tourid}',[HomeController::class, 'checkout'])->name('checkout');
     Route::get('/contact',[HomeController::class, 'contact'])->name('contact');
 });
 
