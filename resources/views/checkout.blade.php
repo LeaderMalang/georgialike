@@ -30,8 +30,8 @@
   <link rel="stylesheet" type="text/css" href="{{asset('css/plugins/animate/animate.css')}}">
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"> --}}
+  {{-- <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"> --}}
 
   <!-- END Custom CSS-->
   <style>
@@ -211,7 +211,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                             <div class="card card-cascade wider shadow p-3 mb-5 ">
                                                 <!--Card image-->
                                                 <div class="view view-cascade overlay text-center">
-                                                    <img class="card-img-top" src="{{asset('/images/c1.jpg')}}" alt="">
+                                                    <img class="card-img-top" src="{{asset($tour->image)}}" alt="">
                                                     <a><div class="mask rgba-white-slight"></div></a>
                                                 </div>
                                                     <!--Product Description-->
@@ -221,17 +221,17 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                                         <!--Column for Data-->
                                                         <div class="col">
                                                             <p class="text-muted row1">Tour</p>
-                                                            <p class="row2">4 days/ 3 nights</p>
+                                                            <p class="row2">{{$tour->category->days}} days/ {{$tour->category->nights}} nights</p>
                                                         </div>
                                                         <!--Column for Data-->
                                                         <div class="col">
                                                             <p class="text-muted row1">Amount</p>
-                                                            <p class="row2">$1550 </p>
+                                                            <p class="row2">${{$tour->charges}} </p>
                                                         </div>
                                                         <!--Column for Data-->
                                                         <div class="col">
                                                             <p class="text-muted row1">No of People</p>
-                                                            <p class="row2">3</p>
+                                                            <p class="row2">{{$tour->category->people}}</p>
                                                         </div>
                                                     </div>
                                                     <!-- 2nd Row for title-->
@@ -263,26 +263,26 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                                     <!--Card Description-->
                                                     <div class="card2decs">
                                                         <p class="heading1"><strong>TRIPS IN GEORGIA</strong></p>
-                                                        <p class="quantity">Hotel <span class="float-right text1">3 Star</span></p>
-                                                        <p class="subtotal">Subtotal<span class="float-right text1">$1,140</span></p>
+                                                        {{-- <p class="quantity">Hotel <span class="float-right text1">3 Star</span></p> --}}
+                                                        <p class="subtotal">Subtotal<span class="float-right text1">${{$tour->charges}}</span></p>
                                                         {{-- <p class="shipping">Shipping<span class="float-right text1">Free</span></p>
                                                         <p class="promocode">Promo Code<span class="float-right text1">-$100</span></p> --}}
-                                                        <p class="total"><strong>Total</strong><span class="float-right totalText1">$<span class="totalText2">1,140</span></span></p>
+                                                        <p class="total"><strong>Total</strong><span class="float-right totalText1">$<span class="totalText2">{{$tour->charges}}</span></span></p>
                                                     </div>
-                                                    <div class="payment">
+                                                    {{-- <div class="payment">
                                                         <p class="heading2"><strong>Payment Details</strong></p>
                                                         <p class="cardAndExpire">Card Number<span class="float-right">Expiry</span></p>
                                                         <p class="cardAndExpireValue">161617161816188<span class="float-right">26/11</span></p>
                                                         <p class="nameAndcvc" style="margin-bottom:-10px;">Cardholder name<span class="float-right">CVC</span></p>
                                                         <p class="nameAndcvcValue">Mr. Example<span class="float-right">010</span></p>
 
-                                                    </div>
+                                                    </div> --}}
                                                     <!--Card footer-->
-                                                    <a href="" class="purchaseLink">
+                                                    {{-- <a href="" class="purchaseLink">
                                                         <div class="card-footer text-center">
                                                             PURCHASE &#8594;
                                                         </div>
-                                                    </a>
+                                                    </a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -290,11 +290,12 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                    <form action="#" class="steps-validation wizard-notification">
+                                    <form action="{{route('SaveBooking')}}" method="POST" class="steps-validation wizard-notification">
                                         <!-- Step 1 -->
+                                        @csrf
                                         <h6>Step 1</h6>
                                         <fieldset>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="firstName3">
@@ -313,33 +314,30 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                                 <input type="text" class="form-control required" id="lastName3" name="lastName">
                                             </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="row">
                                             <div class="col-md-6">
+                                                <input type="hidden" class="form-control required" value="{{$user_id}}" name="user_id">
+                                                <input type="hidden" class="form-control required" value="{{$tour->id}}" name="tour_id">
+
                                             <div class="form-group">
                                                 <label for="emailAddress5">
-                                                Email Address :
+                                                Hotel Categories :
                                                 <span class="danger">*</span>
                                                 </label>
-                                                <input type="email" class="form-control required" id="emailAddress5" name="emailAddress">
-                                            </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="location">
-                                                Select City :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <select class="c-select form-control required" id="location" name="location">
-                                                <option value="">Select City</option>
-                                                <option value="Amsterdam">Amsterdam</option>
-                                                <option value="Berlin">Berlin</option>
-                                                <option value="Frankfurt">Frankfurt</option>
+                                                <select name="hotel_category_id" class="form-control required" >
+                                                    <option>Select Category</option>
+                                                    @foreach ($hotel_categories as $hotel_category)
+                                                    <option value="{{ $hotel_category->id }}">{{ $hotel_category->name }}
+                                                    </option>
+                                                @endforeach
                                                 </select>
+                                                {{-- <input type="email" class="form-control required" id="emailAddress5" name="emailAddress"> --}}
                                             </div>
                                             </div>
+
                                         </div>
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="phoneNumber3">Phone Number :</label>
@@ -352,232 +350,72 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                                 <input type="date" class="form-control" id="date3">
                                             </div>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         </fieldset>
                                         <!-- Step 2 -->
                                         <h6>Step 2</h6>
                                         <fieldset>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="proposalTitle3">
-                                                Proposal Title :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <input type="text" class="form-control required" id="proposalTitle3" name="proposalTitle">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="emailAddress6">
-                                                Email Address :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <input type="email" class="form-control required" id="emailAddress6" name="emailAddress">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="videoUrl3">Video URL :</label>
-                                                <input type="url" class="form-control" id="videoUrl3" name="videoUrl">
-                                            </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="jobTitle3">
-                                                Job Title :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <input type="text" class="form-control required" id="jobTitle3" name="jobTitle">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="shortDescription3">Short Description :</label>
-                                                <textarea name="shortDescription" id="shortDescription3" rows="4" class="form-control"></textarea>
-                                            </div>
-                                            </div>
+                                            {{-- <div class="col-md-12"> --}}
+
+                                                <div class="card-content">
+                                                    <div class="card-body">
+                                                      <p>Card will take any credit card form and make it the best part
+                                                        of the checkout process (without you changing anything). Everything
+                                                        is created with pure CSS, HTML, and jQuery — no images required.</p>
+                                                      <div class="row">
+                                                        <div class="col-xl-6 col-lg-12">
+                                                          <div class='card-wrapper'></div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-12">
+                                                          <form action="#" class="card-form">
+                                                            <fieldset class="mb-1">
+                                                              <h5>Card Number</h5>
+                                                              <div class="form-group">
+                                                                <input type="text" class="form-control card-number" name="number" id="card-number"
+                                                                maxlength="19" placeholder="Card Number">
+                                                              </div>
+                                                            </fieldset>
+                                                            <fieldset class="mb-1">
+                                                              <h5>Card Name</h5>
+                                                              <div class="form-group">
+                                                                <input type="text" class="form-control card-name" name="name" id="card-name" placeholder="Card Holder Name">
+                                                              </div>
+                                                            </fieldset>
+                                                            <div class="row">
+                                                              <div class="col-md-6">
+                                                                <fieldset class="mb-1">
+                                                                  <h5>Expiry Date</h5>
+                                                                  <div class="form-group">
+                                                                    <input type="text" class="form-control card-expiry" name="expiry" id="card-expiry"
+                                                                    placeholder="Card Expiry Date">
+                                                                  </div>
+                                                                </fieldset>
+                                                              </div>
+                                                              <div class="col-md-6">
+                                                                <fieldset class="mb-1">
+                                                                  <h5>Card Number</h5>
+                                                                  <div class="form-group">
+                                                                    <input type="text" class="form-control card-cvc" name="cvc" id="card-cvc" maxlength="16"
+                                                                    placeholder="Card CVC Number">
+                                                                  </div>
+                                                                </fieldset>
+                                                              </div>
+                                                            </div>
+                                                          </form>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                            {{-- </div> --}}
                                         </div>
                                         </fieldset>
-                                        <!-- Step 3 -->
-                                        <h6>Step 3</h6>
-                                        <fieldset>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="eventName3">
-                                                Event Name :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <input type="text" class="form-control required" id="eventName3" name="eventName">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="eventType3">
-                                                Event Type :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <select class="c-select form-control required" id="eventType3" name="eventType3">
-                                                <option value="Banquet">Banquet</option>
-                                                <option value="Fund Raiser">Fund Raiser</option>
-                                                <option value="Dinner Party">Dinner Party</option>
-                                                <option value="Wedding">Wedding</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="eventLocation3">Event Location :</label>
-                                                <select class="c-select form-control" id="eventLocation3" name="eventLocation">
-                                                <option value="">Select City</option>
-                                                <option value="Amsterdam">Amsterdam</option>
-                                                <option value="Berlin">Berlin</option>
-                                                <option value="Frankfurt">Frankfurt</option>
-                                                </select>
-                                            </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="eventDate">
-                                                Event Date - Time :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <div class='input-group'>
-                                                <input type='text' class="form-control datetime required" id="eventDate" name="eventDate"
-                                                />
-                                                <span class="input-group-addon">
-                                                    <span class="ft-calendar"></span>
-                                                </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="eventStatus3">
-                                                Event Status :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <select class="c-select form-control required" id="eventStatus3" name="eventStatus">
-                                                <option value="Planning">Planning</option>
-                                                <option value="In Progress">In Progress</option>
-                                                <option value="Finished">Finished</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Requirements :</label>
-                                                <div class="c-inputs-stacked">
-                                                <div class="d-inline-block custom-control custom-checkbox">
-                                                    <input type="checkbox" name="status3" class="custom-control-input" id="staffing3">
-                                                    <label class="custom-control-label" for="staffing3">Staffing</label>
-                                                </div>
-                                                <div class="d-inline-block custom-control custom-checkbox">
-                                                    <input type="checkbox" name="status3" class="custom-control-input" id="catering3">
-                                                    <label class="custom-control-label" for="catering3">Catering</label>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </fieldset>
-                                        <!-- Step 4 -->
-                                        <h6>Step 4</h6>
-                                        <fieldset>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="meetingName3">
-                                                Name of Meeting :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <input type="text" class="form-control required" id="meetingName3" name="meetingName">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="meetingLocation3">
-                                                Location :
-                                                <span class="danger">*</span>
-                                                </label>
-                                                <input type="text" class="form-control required" id="meetingLocation3" name="meetingLocation">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="participants3">Names of Participants</label>
-                                                <textarea name="participants" id="participants3" rows="4" class="form-control"></textarea>
-                                            </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="decisions3">Decisions Reached</label>
-                                                <textarea name="decisions" id="decisions3" rows="4" class="form-control"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Agenda Items :</label>
-                                                <div class="c-inputs-stacked">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" name="agenda3" class="custom-control-input" id="item31">
-                                                    <label class="custom-control-label" for="item31">1st item</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" name="agenda3" class="custom-control-input" id="item32">
-                                                    <label class="custom-control-label" for="item32">2nd item</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" name="agenda3" class="custom-control-input" id="item33">
-                                                    <label class="custom-control-label" for="item33">3rd item</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" name="agenda3" class="custom-control-input" id="item34">
-                                                    <label class="custom-control-label" for="item34">4th item</label>
-                                                </div>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" name="agenda3" class="custom-control-input" id="item35">
-                                                    <label class="custom-control-label" for="item35">5th item</label>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        </fieldset>
+
                                     </form>
-                                    </div>
+
                                 </div>
 
-                                <div class="card-content">
-                                    <div class="card-body">
-                                      <p>Card will take any credit card form and make it the best part
-                                        of the checkout process (without you changing anything). Everything
-                                        is created with pure CSS, HTML, and jQuery — no images required.</p>
-                                      <div class="row">
-                                        <div class="col-xl-6 col-lg-12">
-                                          <div class='card-wrapper'></div>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-12">
-                                          <form action="#" class="card-form">
-                                            <fieldset class="mb-1">
-                                              <h5>Card Number</h5>
-                                              <div class="form-group">
-                                                <input type="text" class="form-control card-number" name="number" id="card-number"
-                                                maxlength="19" placeholder="Card Number">
-                                              </div>
-                                            </fieldset>
-                                            <fieldset class="mb-1">
-                                              <h5>Card Name</h5>
-                                              <div class="form-group">
-                                                <input type="text" class="form-control card-name" name="name" id="card-name" placeholder="Card Holder Name">
-                                              </div>
-                                            </fieldset>
-                                            <div class="row">
-                                              <div class="col-md-6">
-                                                <fieldset class="mb-1">
-                                                  <h5>Expiry Date</h5>
-                                                  <div class="form-group">
-                                                    <input type="text" class="form-control card-expiry" name="expiry" id="card-expiry"
-                                                    placeholder="Card Expiry Date">
-                                                  </div>
-                                                </fieldset>
-                                              </div>
-                                              <div class="col-md-6">
-                                                <fieldset class="mb-1">
-                                                  <h5>Card Number</h5>
-                                                  <div class="form-group">
-                                                    <input type="text" class="form-control card-cvc" name="cvc" id="card-cvc" maxlength="16"
-                                                    placeholder="Card CVC Number">
-                                                  </div>
-                                                </fieldset>
-                                              </div>
-                                            </div>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
+
 
                             </div>
                         </div>
@@ -587,173 +425,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
             </div>
         </div>
     </div>
-    <div class="container d-lg-flex">
-        <div class="box-1 bg-light user">
-            <div class="d-flex align-items-center mb-3">
-                <img src="https://images.pexels.com/photos/4925916/pexels-photo-4925916.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                    class="pic rounded-circle" alt="">
-                <p class="ps-2 name">Oliur</p>
-            </div>
-            <div class="box-inner-1 pb-3 mb-3 ">
-                <div class="d-flex justify-content-between mb-3 userdetails">
-                    <p class="fw-bold">Lightroom Presets</p>
-                    <p class="fw-lighter"><span class="fas fa-dollar-sign"></span>33.00+</p>
-                </div>
-                <div id="my" class="carousel slide carousel-fade img-details" data-bs-ride="carousel"
-                    data-bs-interval="2000">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#my" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#my" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#my" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                class="d-block w-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://images.pexels.com/photos/258092/pexels-photo-258092.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                class="d-block w-100 h-100">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-                                class="d-block w-100">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#my" data-bs-slide="prev">
-                        <div class="icon">
-                            <span class="fas fa-arrow-left"></span>
-                        </div>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
 
-                    <button class="carousel-control-next" type="button" data-bs-target="#my" data-bs-slide="next">
-                        <div class="icon">
-                            <span class="fas fa-arrow-right"></span>
-                        </div>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <p class="dis info my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quos ipsa
-                    sed officiis odio
-                </p>
-                <div class="radiobtn">
-                    <input type="radio" name="box" id="one">
-                    <input type="radio" name="box" id="two">
-                    <input type="radio" name="box" id="three">
-                    <label for="one" class="box py-2 first">
-                        <div class="d-flex align-items-start">
-                            <span class="circle"></span>
-                            <div class="course">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <span class="fw-bold">
-                                        Collection 01
-                                    </span>
-                                    <span class="fas fa-dollar-sign">29</span>
-                                </div>
-                                <span>10 x Presets. Released in 2018</span>
-                            </div>
-                        </div>
-                    </label>
-                    <label for="two" class="box py-2 second">
-                        <div class="d-flex">
-                            <span class="circle"></span>
-                            <div class="course">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <span class="fw-bold">
-                                        Collection 01
-                                    </span>
-                                    <span class="fas fa-dollar-sign">29</span>
-                                </div>
-                                <span>10 x Presets. Released in 2018</span>
-                            </div>
-                        </div>
-                    </label>
-                    <label for="three" class="box py-2 third">
-                        <div class="d-flex">
-                            <span class="circle"></span>
-                            <div class="course">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <span class="fw-bold">
-                                        Collection 01
-                                    </span>
-                                    <span class="fas fa-dollar-sign">29</span>
-                                </div>
-                                <span>10 x Presets. Released in 2018</span>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="box-2">
-            <div class="box-inner-2">
-                <div>
-                    <p class="fw-bold">Payment Details</p>
-                    <p class="dis mb-3">Complete your purchase by providing your payment details</p>
-                </div>
-                <form action="">
-                    <div class="mb-3">
-                        <p class="dis fw-bold mb-2">Email address</p>
-                        <input class="form-control" type="email" value="luke@skywalker.com">
-                    </div>
-                    <div>
-                        <p class="dis fw-bold mb-2">Card details</p>
-                        <div class="d-flex align-items-center justify-content-between card-atm border rounded">
-                            <div class="fab fa-cc-visa ps-3"></div>
-                            <input type="text" class="form-control" placeholder="Card Details">
-                            <div class="d-flex w-50">
-                                <input type="text" class="form-control px-0" placeholder="MM/YY">
-                                <input type="password" maxlength=3 class="form-control px-0" placeholder="CVV">
-                            </div>
-                        </div>
-                        <div class="my-3 cardname">
-                            <p class="dis fw-bold mb-2">Cardholder name</p>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="address">
-                            <p class="dis fw-bold mb-3">Billing address</p>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected hidden>United States</option>
-                                <option value="1">India</option>
-                                <option value="2">Australia</option>
-                                <option value="3">Canada</option>
-                            </select>
-                            <div class="d-flex">
-                                <input class="form-control zip" type="text" placeholder="ZIP">
-                                <input class="form-control state" type="text" placeholder="State">
-                            </div>
-                            <div class=" my-3">
-                                <p class="dis fw-bold mb-2">VAT Number</p>
-                                <div class="inputWithcheck">
-                                    <input class="form-control" type="text" value="GB012345B9">
-                                    <span class="fas fa-check"></span>
-
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column dis">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <p>Subtotal</p>
-                                    <p><span class="fas fa-dollar-sign"></span>33.00</p>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <p>VAT<span>(20%)</span></p>
-                                    <p><span class="fas fa-dollar-sign"></span>2.80</p>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <p class="fw-bold">Total</p>
-                                    <p class="fw-bold"><span class="fas fa-dollar-sign"></span>35.80</p>
-                                </div>
-                                <div class="btn btn-primary mt-2">Pay<span class="fas fa-dollar-sign px-1"></span>35.80
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
   <footer class="footer navbar-fixed-bottom footer-cust navbar-border navbar-shadow">
   </br>
     <div class="row col-12">
@@ -844,7 +516,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
   <script src="{{asset('js/scripts/forms/extended/form-formatter.js')}}" type="text/javascript"></script>
   <script src="{{asset('js/scripts/forms/extended/form-maxlength.js')}}" type="text/javascript"></script>
   <script src="{{asset('js/scripts/forms/extended/form-card.js')}}" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script> --}}
 
   <!-- END PAGE LEVEL JS-->
 </body>

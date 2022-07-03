@@ -8,7 +8,7 @@ use App\Models\Hotel;
 use App\Models\TourCategory;
 use App\Models\Hotal_Category;
 use App\Models\TourDay;
-
+use App\Models\Booking;
 
 class HomeController extends Controller
 {
@@ -75,9 +75,24 @@ class HomeController extends Controller
 
     public function checkout($tourid)
     {
-        $tour=Tour::with(['category','tour_day'])->where('id',$tourid)->get();
-        $hotel_categories=Hotal_Category::all();
-        return view('checkout',compact('tour','hotel_categories'));
+        if(auth()->user()){
+
+            $tour=Tour::where('id',$tourid)->with(['category','tour_day'])->first();
+            $hotel_categories=Hotal_Category::all();
+            $user_id=auth()->user()->id;
+
+            // dd($tour->toArray());
+            return view('checkout',compact('tour','hotel_categories','user_id'));
+        }
+        else {
+            return redirect()->route('login');
+        }
+    }
+    public function SaveBooking(Request $request){
+        $data=$request->all();
+        $data['is_paid']=0;
+        Booking::create($data);
+        return redirect()->route('home');
     }
 
     public function contact()

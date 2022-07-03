@@ -27,6 +27,8 @@ Route::group([], function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about-us',[HomeController::class, 'aboutUs'])->name('about');
     Route::get('/checkout/{tourid}',[HomeController::class, 'checkout'])->name('checkout');
+    Route::post('/booking',[HomeController::class, 'SaveBooking'])->name('SaveBooking');
+
     Route::get('/contact',[HomeController::class, 'contact'])->name('contact');
 });
 

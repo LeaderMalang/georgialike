@@ -93,7 +93,7 @@ $(".steps-validation").steps({
     },
     onFinished: function (event, currentIndex)
     {
-        alert("Submitted!");
+        form.submit();
     }
 });
 
