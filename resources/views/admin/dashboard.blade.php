@@ -16,12 +16,12 @@
                       <h1><i class="cc BTC warning font-large-2" title="BTC"></i></h1>
                     </div> --}}
                     <div class="col-5 pl-2">
-                      <h4>PACKAGES</h4>
+                      <h4>Tours</h4>
                       <h6 class="text-muted">Total</h6>
                     </div>
                     <div class="col-5 text-right">
-                      <h4>180</h4>
-                      <h6 class="success darken-4">31% <i class="la la-arrow-up"></i></h6>
+                      <h4>{{$tours}}</h4>
+                      {{-- <h6 class="success darken-4">31% <i class="la la-arrow-up"></i></h6> --}}
                     </div>
                   </div>
                 </div>
@@ -46,8 +46,8 @@
                       <h6 class="text-muted">Total</h6>
                     </div>
                     <div class="col-5 text-right">
-                      <h4>144</h4>
-                      <h6 class="success darken-4">12% <i class="la la-arrow-up"></i></h6>
+                      <h4>{{$all}}</h4>
+                      {{-- <h6 class="success darken-4">12% <i class="la la-arrow-up"></i></h6> --}}
                     </div>
                   </div>
                 </div>
@@ -72,8 +72,8 @@
                       <h6 class="text-muted">TOtal</h6>
                     </div>
                     <div class="col-5 text-right">
-                      <h4>12</h4>
-                      <h6 class="danger">20% <i class="la la-arrow-down"></i></h6>
+                      <h4>{{$users}}</h4>
+                      {{-- <h6 class="danger">20% <i class="la la-arrow-down"></i></h6> --}}
                     </div>
                   </div>
                 </div>
@@ -88,7 +88,7 @@
         </div>
         <!--/ Sell Orders & Buy Order -->
         <!-- Active Orders -->
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
@@ -194,7 +194,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         <!-- Active Orders -->
       </div>
     </div>

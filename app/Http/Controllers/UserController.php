@@ -40,7 +40,8 @@ class UserController extends Controller
     }
 
     public function paid_bookings(){
-        $paid_bookings=Booking::all();
+        $user_id=auth()->user()->id;
+        $paid_bookings=Booking::with(['category','tour'])->where('user_id',$user_id)->get();
         return view('user.paid_booking',compact('paid_bookings'));
 
 

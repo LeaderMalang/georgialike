@@ -19,6 +19,6 @@ class Booking extends Model
         return $this->hasOne(Tour::class,'id','tour_id');
     }
     public function category(){
-        return $this->hasOne(Hotal_Category::class,'id','hotal_category_id');
+        return $this->hasOne(Hotal_Category::class,'id','hotel_category_id');
     }
 }

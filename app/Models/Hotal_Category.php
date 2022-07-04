@@ -16,6 +16,6 @@ class Hotal_Category extends Model
         return $this->belongsTo(Hotal_Category::class,'hotal_category_id','id');
     }
     public function booking(){
-        return $this->belongsTo(booking::class,'hotal_category_id','id');
+        return $this->belongsTo(booking::class,'hotel_category_id','id');
     }
 }

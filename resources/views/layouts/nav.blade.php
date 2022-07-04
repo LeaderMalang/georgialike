@@ -22,6 +22,8 @@
             <li class="mr-3"><a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"><h5 class="text-white"><b>CONTACT US</b></h5></a></li>
 
             @if (Auth::user())
+            <li class="mr-3"><a href="{{ route('user.home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline"><h5 class="text-white"><b>Dashboard</b></h5></a></li>
+
             <li class="mr-3"><a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();" class="text-sm text-gray-700 dark:text-gray-500 underline"><h5 class="text-white"><b>Logout</b></h5></a>
 

@@ -3,6 +3,8 @@
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
         <li class=" nav-item"><a href="{{ route('admin.home') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Dashboard</span></a>
         </li>
+        <li class=" nav-item"><a href="{{ route('admin.bookings') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Bookings</span></a>
+        </li>
         <li class=" nav-item"><a href="{{ route('admin.tours') }}"><i class="la la-home"></i><span class="menu-title" data-i18n="nav.dash.main">Add Tours</span></a>
         </li>
 
