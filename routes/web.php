@@ -37,6 +37,9 @@ Auth::routes();
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin.home')->middleware('is_admin');
 Route::get('admin/tours', [AdminController::class, 'tours'])->name('admin.tours')->middleware('is_admin');
 Route::get('user/dashboard', [UserController::class, 'index'])->name('user.home')->middleware('is_user');
+Route::get('user/paid-bookings', [UserController::class, 'paid_bookings'])->name('user.paid_bookings')->middleware('is_user');
+Route::get('user/unpaid-bookings', [UserController::class, 'unpaid_bookings'])->name('user.unpaid_bookings')->middleware('is_user');
+
 Route::get('admin/tour/category', [TourCategoryController::class, 'index'])->name('admin.tours.category')->middleware('is_admin');
 Route::post('admin/tour/category/store', [TourCategoryController::class, 'store'])->name('admin.tours.category.store')->middleware('is_admin');
 Route::get('admin/tour/category/destroy/{id}', [TourCategoryController::class, 'destroy'])->name('admin.tours.category.destroy')->middleware('is_admin');

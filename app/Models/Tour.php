@@ -18,4 +18,7 @@ class Tour extends Model
     public function tour_day(){
         return $this->hasMany(TourDay::class,'tour_id','id');
     }
+    public function booking(){
+        return $this->belongsTo(booking::class,'tour_id','id');
+    }
 }

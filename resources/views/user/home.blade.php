@@ -16,12 +16,12 @@
                       <h1><i class="cc BTC warning font-large-2" title="BTC"></i></h1>
                     </div>
                     <div class="col-5 pl-2">
-                      <h4>BTC</h4>
-                      <h6 class="text-muted">Bitcoin</h6>
+                      <h4>Paid Bookings</h4>
+                      {{-- <h6 class="text-muted">Bitcoin</h6> --}}
                     </div>
                     <div class="col-5 text-right">
-                      <h4>$9,980</h4>
-                      <h6 class="success darken-4">31% <i class="la la-arrow-up"></i></h6>
+                      <h4>{{$paid_bookings}}</h4>
+                      {{-- <h6 class="success darken-4">31% <i class="la la-arrow-up"></i></h6> --}}
                     </div>
                   </div>
                 </div>
@@ -42,12 +42,12 @@
                       <h1><i class="cc ETH blue-grey lighten-1 font-large-2" title="ETH"></i></h1>
                     </div>
                     <div class="col-5 pl-2">
-                      <h4>ETH</h4>
-                      <h6 class="text-muted">Ethereum</h6>
+                      <h4>UnPaid Bookings</h4>
+                      {{-- <h6 class="text-muted">Ethereum</h6> --}}
                     </div>
                     <div class="col-5 text-right">
-                      <h4>$944</h4>
-                      <h6 class="success darken-4">12% <i class="la la-arrow-up"></i></h6>
+                      <h4>{{$unpaid_bookings}}</h4>
+                      {{-- <h6 class="success darken-4">12% <i class="la la-arrow-up"></i></h6> --}}
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-12">
+          {{-- <div class="col-xl-4 col-12">
             <div class="card crypto-card-3 pull-up">
               <div class="card-content">
                 <div class="card-body pb-0">
@@ -84,7 +84,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
         <!--/ Sell Orders & Buy Order -->
       </div>

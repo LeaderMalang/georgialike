@@ -11,7 +11,7 @@ use Validator;
 use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-
+use App\Models\Booking;
 class UserController extends Controller
 {
     /**
@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-  
+
     /**
      * Show the application dashboard.
      *
@@ -32,6 +32,23 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        return view('user.home');
+        $paid_bookings=Booking::where('is_paid',1)->count();
+
+        $unpaid_bookings=Booking::where('is_paid',0)->count();
+
+        return view('user.home',compact('paid_bookings','unpaid_bookings'));
+    }
+
+    public function paid_bookings(){
+        $paid_bookings=Booking::all();
+        return view('user.paid_booking',compact('paid_bookings'));
+
+
+    }
+    public function unpaid_bookings(){
+        $unpaid_bookings=Booking::where('is_paid',0)->get();
+        return view('user.unpaid_booking',compact('unpaid_bookings'));
+
+
     }
 }
