@@ -92,7 +92,7 @@
                                             style="background-color: rgb(24, 24, 27, 0.29); color: white;">
                                             <option selected>Select ..</option>
                                             @foreach ($hotel_categories as $hotel_category)
-                                                <option value="{{ $hotel_category->id }}">{{ $hotel_category->name }}
+                                                <option {{request()->get('hotel_category')==$hotel_category->id?'selected':""}} value="{{ $hotel_category->id }}">{{ $hotel_category->name }}
                                                 </option>
                                             @endforeach
 
@@ -106,7 +106,7 @@
                                             style="background-color: rgb(24, 24, 27, 0.29); color: white;">
                                             <option selected>Select..</option>
                                             @foreach ($tourCategories as $tourCategory)
-                                                <option value="{{ $tourCategory->id }}">{{ $tourCategory->days }}
+                                                <option {{request()->get('days_nights')==$tourCategory->id?'selected':""}} value="{{ $tourCategory->id }}">{{ $tourCategory->days }}
                                                     Days / {{ $tourCategory->nights }} Night Tour</option>
                                             @endforeach
 
@@ -120,21 +120,21 @@
                                         <select class="form-control" name="people" id="t_people"
                                             style="background-color: rgb(24, 24, 27, 0.29); color: white;">
                                             <option selected>Select..</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                            <option value="13">13</option>
-                                            <option value="14">14</option>
-                                            <option value="15">15</option>
+                                            <option {{request()->get('people')=='1'?'selected':""}} value="1">1</option>
+                                            <option {{request()->get('people')=='2'?'selected':""}} value="2">2</option>
+                                            <option {{request()->get('people')=='3'?'selected':""}} value="3">3</option>
+                                            <option {{request()->get('people')=='4'?'selected':""}} value="4">4</option>
+                                            <option {{request()->get('people')=='5'?'selected':""}} value="5">5</option>
+                                            <option  {{request()->get('people')=='6'?'selected':""}} value="6">6</option>
+                                            <option {{request()->get('people')=='7'?'selected':""}} value="7">7</option>
+                                            <option {{request()->get('people')=='8'?'selected':""}} value="8">8</option>
+                                            <option {{request()->get('people')=='9'?'selected':""}} value="9">9</option>
+                                            <option {{request()->get('people')=='10'?'selected':""}} value="10">10</option>
+                                            <option {{request()->get('people')=='11'?'selected':""}} value="11">11</option>
+                                            <option {{request()->get('people')=='12'?'selected':""}} value="12">12</option>
+                                            <option {{request()->get('people')=='13'?'selected':""}} value="13">13</option>
+                                            <option {{request()->get('people')=='14'?'selected':""}} value="14">14</option>
+                                            <option {{request()->get('people')=='15'?'selected':""}} value="15">15</option>
                                         </select>
                                     </fieldset>
                                 </div>
@@ -171,7 +171,10 @@
                             alt="Card image cap">
                         <div class="card-body">
                             <h4 class="card-title">{{$tour->title}}</h4>
+                            @isset($tour->category)
                             <p class="card-text">{{$tour->category->days}} Days / {{$tour->category->nights}} Nights Tour</p>
+
+                            @endisset
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <span class="btn btn-primary">${{$tour->charges}}</span>
                                 <a href="{{ route('checkout',$tour->id) }}" target="_blank"><button type="button"

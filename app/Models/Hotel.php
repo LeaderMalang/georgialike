@@ -16,4 +16,4 @@ class Hotel extends Model
         return $this->hasOne(Hotal_Category::class,'id','hotal_category_id');
     }
 }
-zz
+

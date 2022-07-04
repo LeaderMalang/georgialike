@@ -33,7 +33,7 @@ class HomeController extends Controller
         $hotels='';
 
          if($request->has('days_nights')){
-            $tours=Tour::with(['category'=>function($q) use($request){
+            $tours=Tour::has('category')->has('tour_day')->with(['category'=>function($q) use($request){
                 $q->where('id',$request->days_nights);
             },'tour_day'])->get();
             $hotels=Hotel::with('category')->get();
@@ -41,7 +41,7 @@ class HomeController extends Controller
         $hotel_categories=Hotal_Category::all();
         }
         else if($request->has('people')){
-            $tours=Tour::with(['category'=>function($q) use($request){
+            $tours=Tour::has('category')->has('tour_day')->with(['category'=>function($q) use($request){
                 $q->where('people',$request->people);
             },'tour_day'])->get();
             $hotels=Hotel::with('category')->get();
@@ -52,15 +52,60 @@ class HomeController extends Controller
             $hotels=Hotel::with(['category'=>function($q) use($request){
                 $q->where('id',$request->hotel_category);
             }])->get();
-            $tours=Tour::with(['category','tour_day'])->get();
+            $tours=Tour::has('category')->has('tour_day')->with(['category','tour_day'])->get();
             $tourCategories=TourCategory::all();
             $hotel_categories=Hotal_Category::all();
 
-        }else {
+        }
+        else if($request->has('hotel_category')  && $request->has('people') && $request->has('days_nights')){
+            $hotels=Hotel::with(['category'=>function($q) use($request){
+                $q->where('id',$request->hotel_category);
+            }])->get();
+            $tours=Tour::has('category')->has('tour_day')->with(['category'=>function($q) use($request){
+                $q->where('people',$request->people);
+                $q->where('id',$request->days_nights);
+            },'tour_day'])->get();
+            $tourCategories=TourCategory::all();
+            $hotel_categories=Hotal_Category::all();
+
+        }
+        else if($request->has('hotel_category')  && $request->has('people') ){
+            $hotels=Hotel::with(['category'=>function($q) use($request){
+                $q->where('id',$request->hotel_category);
+            }])->get();
+            $tours=Tour::has('category')->has('tour_day')->with(['category'=>function($q) use($request){
+                $q->where('people',$request->people);
+                // $q->where('id',$request->days_nights);
+            },'tour_day'])->get();
+            $tourCategories=TourCategory::all();
+            $hotel_categories=Hotal_Category::all();
+        }
+        else if($request->has('people') && $request->has('days_nights')){
+            $hotels=Hotel::with('category')->get();
+            $tours=Tour::has('category')->has('tour_day')->with(['category'=>function($q) use($request){
+                $q->where('people',$request->people);
+                $q->where('id',$request->days_nights);
+            },'tour_day'])->get();
+            $tourCategories=TourCategory::all();
+            $hotel_categories=Hotal_Category::all();
+        }
+        else if($request->has('hotel_category')&& $request->has('days_nights')){
+            $hotels=Hotel::with(['category'=>function($q) use($request){
+                $q->where('id',$request->hotel_category);
+            }])->get();
+            $tours=Tour::has('category')->has('tour_day')->with(['category'=>function($q) use($request){
+                // $q->where('people',$request->people);
+                $q->where('id',$request->days_nights);
+            },'tour_day'])->get();
+            $tourCategories=TourCategory::all();
+            $hotel_categories=Hotal_Category::all();
+        }
+
+        else {
 
 
 
-        $tours=Tour::with(['category','tour_day'])->get();
+        $tours=Tour::has('category')->has('tour_day')->with(['category','tour_day'])->get();
         $hotels=Hotel::with('category')->get();
         $tourCategories=TourCategory::all();
         $hotel_categories=Hotal_Category::all();

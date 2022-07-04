@@ -360,15 +360,12 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
 
                                                 <div class="card-content">
                                                     <div class="card-body">
-                                                      <p>Card will take any credit card form and make it the best part
-                                                        of the checkout process (without you changing anything). Everything
-                                                        is created with pure CSS, HTML, and jQuery — no images required.</p>
-                                                      <div class="row">
+                                                     <div class="row">
                                                         <div class="col-xl-6 col-lg-12">
-                                                          <div class='card-wrapper'></div>
+                                                          <div class='card-wrapper' id='card-wrapper'></div>
                                                         </div>
                                                         <div class="col-xl-6 col-lg-12">
-                                                          <form action="#" class="card-form">
+                                                          <div action="#" class="card-form" id="card-form">
                                                             <fieldset class="mb-1">
                                                               <h5>Card Number</h5>
                                                               <div class="form-group">
@@ -402,7 +399,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                                                                 </fieldset>
                                                               </div>
                                                             </div>
-                                                          </form>
+                                                          </div>
                                                         </div>
                                                       </div>
                                                     </div>
@@ -421,6 +418,8 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
                         </div>
                     </div>
                 </section>
+
+
                 <!-- Form wzard with step validation section end -->
             </div>
         </div>
@@ -484,7 +483,7 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
   <script src="{{asset('vendors/js/animation/jquery.appear.js')}}" type="text/javascript"></script>
   <script src="{{asset('vendors/js/extensions/jquery.steps.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('vendors/js/pickers/dateTime/moment-with-locales.min.js')}}"
-  type="text/javascript"></script>
+   type="text/javascript"></script>
   <script src="{{asset('vendors/js/pickers/daterange/daterangepicker.js')}}"
   type="text/javascript"></script>
   <script src="{{asset('vendors/js/forms/validation/jquery.validate.min.js')}}"
@@ -519,5 +518,14 @@ data-open="click" data-menu="vertical-menu" data-col="1-column">
   {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script> --}}
 
   <!-- END PAGE LEVEL JS-->
+
+  <script>
+    $('#card-form').card({
+		// a selector or DOM element for the container
+		// where you want the card to appear
+		container: '#card-wrapper', // *required*
+
+	});
+  </script>
 </body>
 </html>
