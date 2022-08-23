@@ -9,6 +9,8 @@ use App\Http\Controllers\TourDayController;
 use App\Http\Controllers\TourDetailController;
 use App\Http\Controllers\HotelCategoryController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ContactUsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,7 @@ Route::group([], function(){
     Route::get('/about-us',[HomeController::class, 'aboutUs'])->name('about');
     Route::get('/checkout/{tourid}',[HomeController::class, 'checkout'])->name('checkout');
     Route::post('/booking',[HomeController::class, 'SaveBooking'])->name('SaveBooking');
+    Route::post('/contact',[ContactUsController::class, 'store'])->name('contact.store');
 
     Route::get('/contact',[HomeController::class, 'contact'])->name('contact');
 });
